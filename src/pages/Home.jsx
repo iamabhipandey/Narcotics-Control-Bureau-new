@@ -1001,6 +1001,72 @@ function Home() {
                 </div>
             </section>
 
+            {/* Newsletter & Emergency Contact Section - Screenshot Match */}
+            <section className="newsletter-emergency-section">
+                <div className="container" data-aos="fade-up" data-aos-duration="2000">
+                    <div className="split-layout">
+                        {/* Left: Newsletter Subscription */}
+                        <div className="newsletter-box">
+                            <div className="newsletter-content">
+                                <h2>Subscribe to our Newsletter</h2>
+                                <p>Never miss updates and information about our activities</p>
+                                <div className="subscribe-form">
+                                    <input type="email" placeholder="Your email address" />
+                                    <button>Subscribe</button>
+                                </div>
+                                <div className="ncb-logo-badge">
+                                    <img src={ncbLogo} alt="NCB Seal" />
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Right: Emergency Contacts */}
+                        <div className="emergency-box">
+                            <div className="emergency-header">
+                                <div className="title-area">
+                                    <h2><span>Emergency</span> Numbers</h2>
+                                    <p>Dial these numbers in case of emergency</p>
+                                </div>
+                                <div className="call-direct">
+                                    <span className="label">CALL NCB ON</span>
+                                    <span className="number">+91-11-26767930</span>
+                                </div>
+                            </div>
+                            <div className="emergency-cards">
+                                <div className="e-card">
+                                    <div className="icon-circle">
+                                        <i className="bi bi-telephone-fill"></i>
+                                    </div>
+                                    <div className="card-info">
+                                        <h3>112</h3>
+                                        <span>National Emergency</span>
+                                    </div>
+                                </div>
+                                <div className="e-card">
+                                    <div className="icon-circle">
+                                        <i className="bi bi-shield-shaded"></i>
+                                    </div>
+                                    <div className="card-info">
+                                        <h3>100</h3>
+                                        <span>Police Service</span>
+                                    </div>
+                                </div>
+                                <div className="e-card">
+                                    <div className="icon-circle">
+                                        <i className="bi bi-fire"></i>
+                                    </div>
+                                    <div className="card-info">
+                                        <h3>101</h3>
+                                        <span>Fire Service</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Key Offerings & What's New Section - MeitY / CDAC Exact Design */}
             <section className="key-offerings-news-section">
                 <div className="container" data-aos="fade-up" data-aos-duration="2000">
                     <div className="row offerings-news-grid">
@@ -1009,7 +1075,7 @@ function Home() {
                             <div className="key-offerings-column">
                                 <div className="offering-header-flex">
                                     <i className="bi bi-clipboard2-check offering-main-icon"></i>
-                                    <h2>Key Offerings</h2>
+                                    <h2>Digital Initiatives</h2>
                                 </div>
 
                                 <div className="offerings-tab-container">
@@ -1139,7 +1205,7 @@ function Home() {
                             <div className="whats-new-column">
                                 <div className="offering-header-flex">
                                     <i className="bi bi-stars offering-main-icon"></i>
-                                    <h2>What's New</h2>
+                                    <h2>Recent Highlights</h2>
                                     <button className="play-pause-header-btn ms-auto" onClick={() => setIsNewsPlaying(!isNewsPlaying)} title={isNewsPlaying ? "Pause" : "Play"} aria-label={isNewsPlaying ? "Pause News" : "Play News"}>
                                         {isNewsPlaying ? <i className="bi bi-pause-fill"></i> : <i className="bi bi-play-fill"></i>}
                                     </button>
@@ -1312,6 +1378,7 @@ function Home() {
 
 
 
+            {/* 
             <section className="photo-gallery-carousel-section">
                 <div className="container" data-aos="fade-up" data-aos-duration="2000">
                     <div className="perfect-section-header">
@@ -1340,6 +1407,7 @@ function Home() {
                     </div>
                 </div>
             </section>
+            */}
 
 
 
