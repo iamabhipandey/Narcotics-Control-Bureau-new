@@ -12,8 +12,9 @@ import {
     ArcElement,
     PointElement,
     LineElement,
+    Filler,
 } from 'chart.js';
-import { Bar, Doughnut } from 'react-chartjs-2';
+import { Line, Bar, Doughnut, Pie } from 'react-chartjs-2';
 
 // Register ChartJS modules
 ChartJS.register(
@@ -25,7 +26,8 @@ ChartJS.register(
     Legend,
     ArcElement,
     PointElement,
-    LineElement
+    LineElement,
+    Filler
 );
 
 // Importing slider images
@@ -162,21 +164,122 @@ function Home() {
         setNewsIndex((prev) => (prev >= newsUpdates.length - cardsToShow ? 0 : prev + 1));
     };
 
-    // Enforcement Dashboard Data - Perfect Contrast Dark Theme
+    // Enforcement Dashboard Data - Multi-Drug Timeline Analysis
     const drugArrestData = {
-        labels: ['Heroin', 'Cocaine', 'Opium', 'Ganja', 'Synthetic Drugs'],
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'],
         datasets: [
             {
-                label: 'Arrests',
-                data: [1250, 450, 890, 3200, 780],
-                backgroundColor: 'rgba(6, 182, 212, 0.75)', // High-contrast Cyan
-                hoverBackgroundColor: 'rgba(34, 211, 238, 1)', // Bright Cyan on hover
-                borderColor: '#22d3ee',
+                label: 'Heroin',
+                data: [450, 620, 480, 750, 520, 810, 640, 720],
+                fill: true,
+                backgroundColor: 'rgba(67, 56, 202, 0.1)',
+                borderColor: '#4338ca',
+                tension: 0.4,
+                pointRadius: 3,
                 borderWidth: 2,
-                borderRadius: 6,
-                barThickness: 28,
             },
+            {
+                label: 'Ganja',
+                data: [820, 1100, 950, 1400, 1200, 1650, 1300, 1550],
+                fill: true,
+                backgroundColor: 'rgba(129, 140, 248, 0.1)',
+                borderColor: '#818cf8',
+                tension: 0.4,
+                pointRadius: 3,
+                borderWidth: 2,
+            },
+            {
+                label: 'Cocaine',
+                data: [150, 280, 210, 390, 250, 420, 310, 380],
+                fill: true,
+                backgroundColor: 'rgba(99, 102, 241, 0.1)',
+                borderColor: '#6366f1',
+                tension: 0.4,
+                pointRadius: 3,
+                borderWidth: 2,
+            },
+            {
+                label: 'Opium',
+                data: [320, 450, 380, 510, 420, 630, 480, 590],
+                fill: true,
+                backgroundColor: 'rgba(165, 180, 252, 0.1)',
+                borderColor: '#a5b4fc',
+                tension: 0.4,
+                pointRadius: 3,
+                borderWidth: 2,
+            },
+            {
+                label: 'Synthetic',
+                data: [280, 520, 410, 680, 450, 790, 520, 710],
+                fill: true,
+                backgroundColor: 'rgba(199, 210, 254, 0.1)',
+                borderColor: '#c7d2fe',
+                tension: 0.4,
+                pointRadius: 3,
+                borderWidth: 2,
+            }
         ],
+    };
+
+    const drugArrestOptions = {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                display: true,
+                position: 'top',
+                align: 'end',
+                labels: {
+                    usePointStyle: true,
+                    pointStyle: 'circle',
+                    padding: 20,
+                    color: '#475569',
+                    font: { size: 12, weight: '600' }
+                }
+            },
+            tooltip: {
+                mode: 'nearest',
+                intersect: true,
+                backgroundColor: '#ffffff',
+                titleColor: '#0f172a',
+                bodyColor: '#475569',
+                borderColor: '#e2e8f0',
+                borderWidth: 1,
+                padding: 12,
+                displayColors: true,
+                bodyFont: { size: 13, weight: '500' }
+            }
+        },
+        scales: {
+            y: {
+                beginAtZero: true,
+                border: { display: false },
+                grid: { color: '#f1f5f9' },
+                ticks: {
+                    color: '#94a3b8',
+                    padding: 10,
+                    font: { size: 11 }
+                }
+            },
+            x: {
+                border: { display: false },
+                grid: { display: false },
+                ticks: {
+                    color: '#94a3b8',
+                    font: { size: 11, weight: '500' },
+                    padding: 10
+                }
+            }
+        },
+        interaction: {
+            mode: 'nearest',
+            axis: 'xy',
+            intersect: true,
+        },
+        hover: {
+            mode: 'nearest',
+            intersect: true
+        }
     };
 
     const personTypeData = {
@@ -185,22 +288,47 @@ function Home() {
             {
                 data: [45, 30, 15, 10],
                 backgroundColor: [
-                    '#f59e0b', // Vibrant Amber (Excellent contrast)
-                    '#10b981', // Emerald Green (Highly distinct)
-                    '#3b82f6', // Bright Blue
-                    '#f43f5e', // Vibrant Rose/Red
+                    '#4338ca', // Deep Navy
+                    '#6366f1', // Indigo
+                    '#818cf8', // Medium Blue
+                    '#c7d2fe', // Light Blue
                 ],
                 hoverBackgroundColor: [
-                    '#fbbf24',
-                    '#34d399',
-                    '#60a5fa',
-                    '#fb7185',
+                    '#3730a3',
+                    '#4f46e5',
+                    '#6366f1',
+                    '#a5b4fc',
                 ],
                 borderWidth: 2,
-                borderColor: '#0f172a', // Deep slate to match background perfectly
+                borderColor: '#ffffff',
                 hoverOffset: 12,
             },
         ],
+    };
+
+    const pieOptions = {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                position: 'bottom',
+                labels: {
+                    usePointStyle: true,
+                    pointStyle: 'circle',
+                    padding: 20,
+                    color: '#475569',
+                    font: { size: 12, weight: '500' }
+                }
+            },
+            tooltip: {
+                backgroundColor: '#ffffff',
+                titleColor: '#0f172a',
+                bodyColor: '#475569',
+                borderColor: '#e2e8f0',
+                borderWidth: 1,
+                padding: 12,
+            }
+        }
     };
 
     const barChartOptions = {
@@ -497,9 +625,8 @@ function Home() {
                 </div>
             </section>
 
-            {/* Announcement Ticker Section - MeitY / CDAC Style */}
             <section className="meity-announcement-ticker">
-                <div className="container ticker-flex">
+                <div className="container ticker-flex" data-aos="fade-up" data-aos-duration="2000">
                     <div className="ticker-label">
                         Announcements
                     </div>
@@ -514,9 +641,8 @@ function Home() {
                 </div>
             </section>
 
-            {/* Redesigned DG Message Section - Premium Card Layout */}
             <section className="dg-message-portal-section-new">
-                <div className="container dg-portal-flex-new">
+                <div className="container dg-portal-flex-new" data-aos="fade-up" data-aos-duration="2000">
                     <div className="dg-message-card-container">
 
                         {/* Left Profile Card */}
@@ -566,9 +692,8 @@ function Home() {
                 </div>
             </section>
 
-            {/* Live Enforcement Intelligence Dashboard */}
             <section className="ncb-live-enforcement-section dark-mode">
-                <div className="container">
+                <div className="container" data-aos="fade-up" data-aos-duration="2000">
                     <div className="perfect-section-header dark">
                         <span className="live-pulse-dot"></span>
                         <h2 className="gateway-title text-white">Live <span className="text-accent">Enforcement Analytics</span></h2>
@@ -649,23 +774,23 @@ function Home() {
 
                         {/* Bottom Side: Charts Grid */}
                         <div className="enforcement-charts-main mt-4">
-                            <div className="chart-panel-card dark-panel">
+                            <div className="chart-panel-card dark-panel wide-panel">
                                 <div className="chart-header">
                                     <h3 className="text-white">Drug-wise Arrest Statistics</h3>
-                                    <p className="text-muted">Vertical analysis of arrests categorized by primary substance type.</p>
+                                    <p className="text-center text-white">Analysis of arrests categorized by substance and timeline.</p>
                                 </div>
-                                <div className="chart-body" style={{ height: "300px" }}>
-                                    <Bar data={drugArrestData} options={barChartOptions} />
+                                <div className="chart-canvas-container">
+                                    <Line data={drugArrestData} options={drugArrestOptions} />
                                 </div>
                             </div>
 
-                            <div className="chart-panel-card dark-panel">
+                            <div className="chart-panel-card dark-panel narrow-panel">
                                 <div className="chart-header">
                                     <h3 className="text-white">Classification of Arrests</h3>
-                                    <p className="text-muted">Percentage distribution by role in trafficking ecosystem.</p>
+                                    <p className="text-center text-white">Percentage distribution by trafficking role.</p>
                                 </div>
-                                <div className="chart-body" style={{ height: "300px" }}>
-                                    <Doughnut data={personTypeData} options={doughnutChartOptions} />
+                                <div className="chart-canvas-container">
+                                    <Pie data={personTypeData} options={pieOptions} />
                                 </div>
                             </div>
                         </div>
@@ -730,9 +855,8 @@ function Home() {
             </div>
         </section> */}
 
-            {/* Motto, Mission & Vision Section - PREVIOUS PREMIUM DESIGN (RESTORED) */}
             <section className="ncb-values-section">
-                <div className="container">
+                <div className="container" data-aos="fade-up" data-aos-duration="2000">
                     <div className="values-grid">
                         <div className="values-left-col">
                             <div className="value-card horizontal">
@@ -816,9 +940,8 @@ function Home() {
                 </div>
             </section>
             */}
-            {/* Latest Updates Section - Institutional News Layout */}
             <section className="latest-updates-section">
-                <div className="container">
+                <div className="container" data-aos="fade-up" data-aos-duration="2000">
                     <div className="updates-header">
                         <div className="header-title">
                             <h2 className="main-title"><span className="text-navy">Latest</span> Updates</h2>
@@ -878,9 +1001,8 @@ function Home() {
                 </div>
             </section>
 
-            {/* Key Offerings & What's New Section - MeitY / CDAC Exact Design */}
             <section className="key-offerings-news-section">
-                <div className="container">
+                <div className="container" data-aos="fade-up" data-aos-duration="2000">
                     <div className="row offerings-news-grid">
                         {/* Left Side: Key Offerings with Tabs */}
                         <div className="col-lg-8 mb-4 mb-lg-0">
@@ -1076,9 +1198,8 @@ function Home() {
             </section>
 
 
-            {/* Social Media Section */}
             <section className="social-media-section">
-                <div className="container">
+                <div className="container" data-aos="fade-up" data-aos-duration="2000">
                     <div className="perfect-section-header">
                         <span className="live-pulse-dot"></span>
                         <h2 className="gateway-title">Social <span>Media</span></h2>
@@ -1191,9 +1312,8 @@ function Home() {
 
 
 
-            {/* Photo Gallery Carousel Section */}
             <section className="photo-gallery-carousel-section">
-                <div className="container">
+                <div className="container" data-aos="fade-up" data-aos-duration="2000">
                     <div className="perfect-section-header">
                         <span className="live-pulse-dot"></span>
                         <h2 className="gateway-title">Media <span>Gallery</span></h2>
@@ -1227,9 +1347,8 @@ function Home() {
 
 
 
-            {/* Important Portals Slider - Matching Screenshot */}
             <section className="portals-slider-section">
-                <div className="container">
+                <div className="container" data-aos="fade-up" data-aos-duration="2000">
                     <div className="perfect-section-header">
                         <span className="live-pulse-dot"></span>
                         <h2 className="gateway-title">Important <span>Websites</span></h2>
