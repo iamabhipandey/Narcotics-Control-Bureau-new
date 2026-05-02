@@ -100,6 +100,57 @@ const slides = [
     }
 ];
 
+const Counter = ({ target, duration = 4000, suffix = "" }) => {
+    const [count, setCount] = useState(0);
+    const countRef = useRef(null);
+    const [isVisible, setIsVisible] = useState(false);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setIsVisible(true);
+                    observer.disconnect();
+                }
+            },
+            { threshold: 0.1 }
+        );
+
+        if (countRef.current) {
+            observer.observe(countRef.current);
+        }
+
+        return () => observer.disconnect();
+    }, []);
+
+    useEffect(() => {
+        if (!isVisible) return;
+
+        let startTimestamp = null;
+        const step = (timestamp) => {
+            if (!startTimestamp) startTimestamp = timestamp;
+            const elapsed = timestamp - startTimestamp;
+            const progress = Math.min(elapsed / duration, 1);
+
+            // Ease Out Quint: 1 - pow(1 - progress, 5)
+            // This starts even faster and slows down much more towards the end
+            const easedProgress = 1 - Math.pow(1 - progress, 5);
+
+            setCount(Math.floor(easedProgress * target));
+            if (progress < 1) {
+                window.requestAnimationFrame(step);
+            }
+        };
+        window.requestAnimationFrame(step);
+    }, [isVisible, target, duration]);
+
+    return (
+        <span ref={countRef}>
+            {count.toLocaleString()}{suffix}
+        </span>
+    );
+};
+
 function Home() {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isPlaying, setIsPlaying] = useState(true);
@@ -109,6 +160,27 @@ function Home() {
     const [isNewsPlaying, setIsNewsPlaying] = useState(true);
     const [isPressPlaying, setIsPressPlaying] = useState(true);
     const [isActivityPlaying, setIsActivityPlaying] = useState(true);
+
+    // Visibility states for triggering chart animations
+    const [enforcementInView, setEnforcementInView] = useState(false);
+    const enforcementRef = useRef(null);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setEnforcementInView(true);
+                }
+            },
+            { threshold: 0.1 }
+        );
+
+        if (enforcementRef.current) {
+            observer.observe(enforcementRef.current);
+        }
+
+        return () => observer.disconnect();
+    }, []);
 
     // Hover states for scrolling boxes
     const [isNewsHovered, setIsNewsHovered] = useState(false);
@@ -279,6 +351,10 @@ function Home() {
         hover: {
             mode: 'nearest',
             intersect: true
+        },
+        animation: {
+            duration: 3000,
+            easing: 'easeOutQuart'
         }
     };
 
@@ -328,6 +404,12 @@ function Home() {
                 borderWidth: 1,
                 padding: 12,
             }
+        },
+        animation: {
+            animateRotate: true,
+            animateScale: true,
+            duration: 3000,
+            easing: 'easeOutBack'
         }
     };
 
@@ -692,7 +774,7 @@ function Home() {
                 </div>
             </section>
 
-            <section className="ncb-live-enforcement-section dark-mode">
+            <section className="ncb-live-enforcement-section dark-mode" ref={enforcementRef}>
                 <div className="container" data-aos="fade-up" data-aos-duration="2000">
                     <div className="perfect-section-header dark">
                         <span className="live-pulse-dot"></span>
@@ -710,7 +792,7 @@ function Home() {
                                 </div>
                                 <div className="kpi-info">
                                     <span className="kpi-label">Total Seizures in 2026</span>
-                                    <h3 className="kpi-value text-white">12,450 <small>KG</small></h3>
+                                    <h3 className="kpi-value text-white"><Counter target={12450} /> <small>KG</small></h3>
                                     <div className="kpi-trend up"><i className="bi bi-arrow-up-right"></i> +14%</div>
                                 </div>
                             </div>
@@ -721,7 +803,7 @@ function Home() {
                                 </div>
                                 <div className="kpi-info">
                                     <span className="kpi-label">Total Seizures by NCB</span>
-                                    <h3 className="kpi-value text-white">35,820 <small>KG</small></h3>
+                                    <h3 className="kpi-value text-white"><Counter target={35820} /> <small>KG</small></h3>
                                     <div className="kpi-trend up"><i className="bi bi-arrow-up-right"></i> +8%</div>
                                 </div>
                             </div>
@@ -732,7 +814,7 @@ function Home() {
                                 </div>
                                 <div className="kpi-info">
                                     <span className="kpi-label">Cases Registered in 2026</span>
-                                    <h3 className="kpi-value text-white">1,245</h3>
+                                    <h3 className="kpi-value text-white"><Counter target={1245} /></h3>
                                     <div className="kpi-trend up"><i className="bi bi-arrow-up-right"></i> +5%</div>
                                 </div>
                             </div>
@@ -743,7 +825,7 @@ function Home() {
                                 </div>
                                 <div className="kpi-info">
                                     <span className="kpi-label">Cases Registered by NCB</span>
-                                    <h3 className="kpi-value text-white">4,892</h3>
+                                    <h3 className="kpi-value text-white"><Counter target={4892} /></h3>
                                     <div className="kpi-trend up"><i className="bi bi-arrow-up-right"></i> +11%</div>
                                 </div>
                             </div>
@@ -754,7 +836,7 @@ function Home() {
                                 </div>
                                 <div className="kpi-info">
                                     <span className="kpi-label">Total Arrests in 2026</span>
-                                    <h3 className="kpi-value text-white">3,120</h3>
+                                    <h3 className="kpi-value text-white"><Counter target={3120} /></h3>
                                     <div className="kpi-trend up"><i className="bi bi-arrow-up-right"></i> +18%</div>
                                 </div>
                             </div>
@@ -765,7 +847,7 @@ function Home() {
                                 </div>
                                 <div className="kpi-info">
                                     <span className="kpi-label">Total Arrests by NCB</span>
-                                    <h3 className="kpi-value text-white">12,854</h3>
+                                    <h3 className="kpi-value text-white"><Counter target={12854} /></h3>
                                     <div className="kpi-trend up"><i className="bi bi-arrow-up-right"></i> +9%</div>
                                 </div>
                             </div>
@@ -780,7 +862,7 @@ function Home() {
                                     <p className="text-center text-white">Analysis of arrests categorized by substance and timeline.</p>
                                 </div>
                                 <div className="chart-canvas-container">
-                                    <Line data={drugArrestData} options={drugArrestOptions} />
+                                    {enforcementInView && <Line data={drugArrestData} options={drugArrestOptions} />}
                                 </div>
                             </div>
 
@@ -790,7 +872,7 @@ function Home() {
                                     <p className="text-center text-white">Percentage distribution by trafficking role.</p>
                                 </div>
                                 <div className="chart-canvas-container">
-                                    <Pie data={personTypeData} options={pieOptions} />
+                                    {enforcementInView && <Pie data={personTypeData} options={pieOptions} />}
                                 </div>
                             </div>
                         </div>
@@ -940,134 +1022,8 @@ function Home() {
                 </div>
             </section>
             */}
-            <section className="latest-updates-section">
-                <div className="container" data-aos="fade-up" data-aos-duration="2000">
-                    <div className="updates-header">
-                        <div className="header-title">
-                            <h2 className="main-title"><span className="text-navy">Latest</span> Updates</h2>
-                        </div>
-                        <div className="header-controls">
-                            <div className="nav-arrows">
-                                <button
-                                    className="nav-arrow-btn"
-                                    aria-label="Previous Update"
-                                    onClick={handlePrevNews}
-                                >
-                                    <i className="bi bi-chevron-left"></i>
-                                </button>
-                                <button
-                                    className="nav-arrow-btn"
-                                    aria-label="Next Update"
-                                    onClick={handleNextNews}
-                                >
-                                    <i className="bi bi-chevron-right"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="updates-carousel-container">
-                        <div
-                            className="updates-grid"
-                            style={{ transform: `translateX(-${newsIndex * (100 / cardsToShow)}%)` }}
-                        >
-                            {newsUpdates.map((news) => (
-                                <div className="update-card" key={news.id}>
-                                    <div className="update-inner">
-                                        <div className="update-image-box">
-                                            <img src={news.image} alt="NCB Operation" className="update-img" />
-                                            <div className="update-date-badge">{news.date}</div>
-                                        </div>
-                                        <div className="update-body">
-                                            <h3 className="update-title">{news.title}</h3>
-                                            <p className="update-excerpt">{news.excerpt}</p>
-                                            <div className="card-footer-flex">
-                                                <Link to={`/media/latest-news/${news.id}`} className="continue-reading-pill">
-                                                    Continue reading <i className="bi bi-chevron-double-right"></i>
-                                                </Link>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-
-                    <div className="updates-footer">
-                        <Link to="/media/latest-news" className="see-more-footer-link">
-                            <i className="bi bi-arrow-right-circle"></i> See More
-                        </Link>
-                    </div>
-                </div>
-            </section>
-
-            {/* Newsletter & Emergency Contact Section - Screenshot Match */}
-            <section className="newsletter-emergency-section">
-                <div className="container" data-aos="fade-up" data-aos-duration="2000">
-                    <div className="split-layout">
-                        {/* Left: Newsletter Subscription */}
-                        <div className="newsletter-box">
-                            <div className="newsletter-content">
-                                <h2>Subscribe to our Newsletter</h2>
-                                <p>Never miss updates and information about our activities</p>
-                                <div className="subscribe-form">
-                                    <input type="email" placeholder="Your email address" />
-                                    <button>Subscribe</button>
-                                </div>
-                                <div className="ncb-logo-badge">
-                                    <img src={ncbLogo} alt="NCB Seal" />
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Right: Emergency Contacts */}
-                        <div className="emergency-box">
-                            <div className="emergency-header">
-                                <div className="title-area">
-                                    <h2><span>Emergency</span> Numbers</h2>
-                                    <p>Dial these numbers in case of emergency</p>
-                                </div>
-                                <div className="call-direct">
-                                    <span className="label">CALL NCB ON</span>
-                                    <span className="number">+91-11-26767930</span>
-                                </div>
-                            </div>
-                            <div className="emergency-cards">
-                                <div className="e-card">
-                                    <div className="icon-circle">
-                                        <i className="bi bi-telephone-fill"></i>
-                                    </div>
-                                    <div className="card-info">
-                                        <h3>112</h3>
-                                        <span>National Emergency</span>
-                                    </div>
-                                </div>
-                                <div className="e-card">
-                                    <div className="icon-circle">
-                                        <i className="bi bi-shield-shaded"></i>
-                                    </div>
-                                    <div className="card-info">
-                                        <h3>100</h3>
-                                        <span>Police Service</span>
-                                    </div>
-                                </div>
-                                <div className="e-card">
-                                    <div className="icon-circle">
-                                        <i className="bi bi-fire"></i>
-                                    </div>
-                                    <div className="card-info">
-                                        <h3>101</h3>
-                                        <span>Fire Service</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
             {/* Key Offerings & What's New Section - MeitY / CDAC Exact Design */}
-            <section className="key-offerings-news-section">
+            <section className="key-offerings-news-section dark-mode">
                 <div className="container" data-aos="fade-up" data-aos-duration="2000">
                     <div className="row offerings-news-grid">
                         {/* Left Side: Key Offerings with Tabs */}
@@ -1263,6 +1219,69 @@ function Home() {
                 </div>
             </section>
 
+            <section className="latest-updates-section">
+                <div className="container" data-aos="fade-up" data-aos-duration="2000">
+                    <div className="updates-header">
+                        <div className="header-title">
+                            <h2 className="main-title"><span className="text-navy">Latest</span> Updates</h2>
+                        </div>
+                        <div className="header-controls">
+                            <div className="nav-arrows">
+                                <button
+                                    className="nav-arrow-btn"
+                                    aria-label="Previous Update"
+                                    onClick={handlePrevNews}
+                                >
+                                    <i className="bi bi-chevron-left"></i>
+                                </button>
+                                <button
+                                    className="nav-arrow-btn"
+                                    aria-label="Next Update"
+                                    onClick={handleNextNews}
+                                >
+                                    <i className="bi bi-chevron-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="updates-carousel-container">
+                        <div
+                            className="updates-grid"
+                            style={{ transform: `translateX(-${newsIndex * (100 / cardsToShow)}%)` }}
+                        >
+                            {newsUpdates.map((news) => (
+                                <div className="update-card" key={news.id}>
+                                    <div className="update-inner">
+                                        <div className="update-image-box">
+                                            <img src={news.image} alt="NCB Operation" className="update-img" />
+                                            <div className="update-date-badge">{news.date}</div>
+                                        </div>
+                                        <div className="update-body">
+                                            <h3 className="update-title">{news.title}</h3>
+                                            <p className="update-excerpt">{news.excerpt}</p>
+                                            <div className="card-footer-flex">
+                                                <Link to={`/media/latest-news/${news.id}`} className="continue-reading-pill">
+                                                    Continue reading <i className="bi bi-chevron-double-right"></i>
+                                                </Link>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    <div className="updates-footer">
+                        <Link to="/media/latest-news" className="see-more-footer-link">
+                            <i className="bi bi-arrow-right-circle"></i> See More
+                        </Link>
+                    </div>
+                </div>
+            </section>
+
+
+
 
             <section className="social-media-section">
                 <div className="container" data-aos="fade-up" data-aos-duration="2000">
@@ -1368,6 +1387,77 @@ function Home() {
                                         <i className="bi bi-instagram"></i>
                                         <p>Official Instagram Feed</p>
                                         <a href="https://www.instagram.com/india.ncb" target="_blank" rel="noopener noreferrer" className="visit-social-btn">VIEW PROFILE</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Newsletter & Emergency Contact Section - Screenshot Match */}
+            <section className="newsletter-emergency-section">
+                <div className="container" data-aos="fade-up" data-aos-duration="2000">
+                    <div className="split-layout">
+                        {/* Left: Newsletter Subscription */}
+                        <div className="newsletter-box">
+                            <div className="newsletter-content">
+                                <h2>Subscribe to our Newsletter</h2>
+                                <p>Never miss updates and information about our activities</p>
+                                <div className="subscribe-form">
+                                    <input type="email" placeholder="Your email address" />
+                                    <button>Subscribe</button>
+                                </div>
+                                <div className="newsletter-footer-row">
+                                    <div className="ncb-logo-badge">
+                                        <img src={ncbLogo} alt="NCB Seal" />
+                                    </div>
+                                    <div className="drug-helpline-info">
+                                        <span className="helpline-label">Drug Helpline</span>
+                                        <span className="helpline-number"><i className="bi bi-telephone-outbound"></i> 14446</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Right: Emergency Contacts */}
+                        <div className="emergency-box">
+                            <div className="emergency-header">
+                                <div className="title-area">
+                                    <h2><span>Emergency</span> Numbers</h2>
+                                    <p>Dial these numbers in case of emergency</p>
+                                </div>
+                                <div className="call-direct">
+                                    <span className="label">CALL NCB ON</span>
+                                    <span className="number">011-2676 1000</span>
+                                </div>
+                            </div>
+                            <div className="emergency-cards">
+                                <div className="e-card">
+                                    <div className="icon-circle">
+                                        <i className="bi bi-telephone-fill"></i>
+                                    </div>
+                                    <div className="card-info">
+                                        <h3>112</h3>
+                                        <span>National Emergency</span>
+                                    </div>
+                                </div>
+                                <div className="e-card">
+                                    <div className="icon-circle">
+                                        <i className="bi bi-shield-shaded"></i>
+                                    </div>
+                                    <div className="card-info">
+                                        <h3>100</h3>
+                                        <span>Police Service</span>
+                                    </div>
+                                </div>
+                                <div className="e-card">
+                                    <div className="icon-circle">
+                                        <i className="bi bi-fire"></i>
+                                    </div>
+                                    <div className="card-info">
+                                        <h3>101</h3>
+                                        <span>Fire Service</span>
                                     </div>
                                 </div>
                             </div>
