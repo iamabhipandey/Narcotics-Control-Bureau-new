@@ -191,10 +191,10 @@ function Home() {
                     '#f43f5e', // Vibrant Rose/Red
                 ],
                 hoverBackgroundColor: [
-                    '#fbbf24', 
-                    '#34d399', 
-                    '#60a5fa', 
-                    '#fb7185', 
+                    '#fbbf24',
+                    '#34d399',
+                    '#60a5fa',
+                    '#fb7185',
                 ],
                 borderWidth: 2,
                 borderColor: '#0f172a', // Deep slate to match background perfectly
@@ -518,7 +518,7 @@ function Home() {
             <section className="dg-message-portal-section-new">
                 <div className="container dg-portal-flex-new">
                     <div className="dg-message-card-container">
-                        
+
                         {/* Left Profile Card */}
                         <div className="dg-image-column-new">
                             <div className="dg-profile-card">
@@ -554,14 +554,14 @@ function Home() {
                                     awareness.
                                 </p>
                             </div>
-                            
+
                             <div className="dg-action-row">
                                 <button className="dg-read-full-btn">
                                     READ FULL MESSAGE <span className="btn-icon-circle"><i className="bi bi-arrow-right"></i></span>
                                 </button>
                             </div>
                         </div>
-                        
+
                     </div>
                 </div>
             </section>
@@ -578,7 +578,7 @@ function Home() {
                     <div className="dashboard-grid-layout">
                         {/* Top: 6 KPI Cards Grid */}
                         <div className="enforcement-kpi-grid">
-                            
+
                             <div className="kpi-stat-card dark-card has-blue-glow">
                                 <div className="kpi-icon-box blue">
                                     <i className="bi bi-box-seam"></i>
@@ -676,7 +676,7 @@ function Home() {
 
 
 
-            <section className="about-meity-section" id="about-us">
+            {/* <section className="about-meity-section" id="about-us">
                 <div className="container">
                     <div className="perfect-section-header">
                         <h2 className="gateway-title">
@@ -686,7 +686,6 @@ function Home() {
                     </div>
 
                     <div className="about-meity-grid">
-                        {/* Left Column: About Info & Quick Links */}
                         <div className="about-meity-left">
 
                         <div className="meity-description">
@@ -714,7 +713,6 @@ function Home() {
                         </div>
                     </div>
 
-                    {/* Right Column: Key Motto Card */}
                     <div className="about-meity-right">
                         <div className="meity-profile-card">
                             <div className="profile-img-box">
@@ -730,15 +728,13 @@ function Home() {
                     </div>
                 </div>
             </div>
-        </section>
+        </section> */}
 
             {/* Motto, Mission & Vision Section - PREVIOUS PREMIUM DESIGN (RESTORED) */}
             <section className="ncb-values-section">
                 <div className="container">
                     <div className="values-grid">
-                        {/* Left Column: Mission & Vision */}
                         <div className="values-left-col">
-                            {/* Mission Card */}
                             <div className="value-card horizontal">
                                 <div className="value-icon-box">
                                     <i className="bi bi-rocket-takeoff-fill"></i>
@@ -829,15 +825,15 @@ function Home() {
                         </div>
                         <div className="header-controls">
                             <div className="nav-arrows">
-                                <button 
-                                    className="nav-arrow-btn" 
+                                <button
+                                    className="nav-arrow-btn"
                                     aria-label="Previous Update"
                                     onClick={handlePrevNews}
                                 >
                                     <i className="bi bi-chevron-left"></i>
                                 </button>
-                                <button 
-                                    className="nav-arrow-btn" 
+                                <button
+                                    className="nav-arrow-btn"
                                     aria-label="Next Update"
                                     onClick={handleNextNews}
                                 >
@@ -848,8 +844,8 @@ function Home() {
                     </div>
 
                     <div className="updates-carousel-container">
-                        <div 
-                            className="updates-grid" 
+                        <div
+                            className="updates-grid"
                             style={{ transform: `translateX(-${newsIndex * (100 / cardsToShow)}%)` }}
                         >
                             {newsUpdates.map((news) => (
@@ -912,101 +908,101 @@ function Home() {
 
                                     <div className="offerings-tab-content-wrapper" key={activeOfferTab}>
                                         <div className="offerings-tab-content">
-                                        {activeOfferTab === "Legal Judgments" && (
-                                            <div className="legal-table-tab-container">
-
-                                                
-                                                <div className="table-responsive-wrapper">
-                                                    <table className="legal-minimal-table">
-                                                        <thead>
-                                                            <tr>
-                                                                <th>CASE TITLE</th>
-                                                                <th>COURT</th>
-                                                                <th>DATE</th>
-                                                                <th className="text-center">VIEW JUDGMENT</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr>
-                                                                <td className="case-title">Cybercrime Investigation Case</td>
-                                                                <td>Supreme Court</td>
-                                                                <td>12-Mar-2026</td>
-                                                                <td className="text-center"><button className="table-view-btn"><i className="bi bi-file-earmark-text"></i> View</button></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td className="case-title">Digital Privacy Rights Case</td>
-                                                                <td>Delhi HC</td>
-                                                                <td>05-Mar-2026</td>
-                                                                <td className="text-center"><button className="table-view-btn"><i className="bi bi-file-earmark-text"></i> View</button></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td className="case-title">Drug Trafficking Case</td>
-                                                                <td>Punjab HC</td>
-                                                                <td>01-Mar-2026</td>
-                                                                <td className="text-center"><button className="table-view-btn"><i className="bi bi-file-earmark-text"></i> View</button></td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
+                                            {activeOfferTab === "Legal Judgments" && (
+                                                <div className="legal-table-tab-container">
 
 
-                                            </div>
-                                        )}
-                                        {activeOfferTab === "Most Wanted" && (
-                                            <div className="tab-detailed-container wanted-tab-v2">
-
-                                                <div className="table-responsive-wrapper">
-                                                    <table className="wanted-list-table legal-minimal-table">
-                                                        <thead>
-                                                            <tr>
-                                                                <th>PROFILE</th>
-                                                                <th>NAME</th>
-                                                                <th>OFFENCE</th>
-                                                                <th>LAST KNOWN STATE</th>
-                                                                <th className="text-center">REWARD</th>
-                                                                <th className="text-center">ACTION</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            {wantedCriminals.map((criminal) => (
-                                                                <tr key={criminal.id}>
-                                                                    <td style={{ width: '80px' }}>
-                                                                        <div className="criminal-pfp">
-                                                                            <img src={criminal.photo} alt={criminal.name} />
-                                                                            <span className={`status-tag ${criminal.status.toLowerCase().replace(' ', '-')}`}></span>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td className="criminal-name-cell">
-                                                                        <strong>{criminal.name}</strong>
-                                                                        <span className={`badge-status ${criminal.status.toLowerCase().replace(' ', '-')}`}>{criminal.status}</span>
-                                                                    </td>
-                                                                    <td><span className="crime-label-mini">{criminal.crime}</span></td>
-                                                                    <td className="location-text-v2">
-                                                                        <i className="bi bi-geo-alt-fill"></i> {criminal.location}
-                                                                    </td>
-                                                                    <td className="text-center reward-text-v2">{criminal.reward}</td>
-                                                                    <td className="text-center">
-                                                                        <button className="wanted-icon-btn" aria-label={`View details for ${criminal.name}`}>
-                                                                            <i className="bi bi-eye-fill"></i>
-                                                                        </button>
-                                                                    </td>
+                                                    <div className="table-responsive-wrapper">
+                                                        <table className="legal-minimal-table">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>CASE TITLE</th>
+                                                                    <th>COURT</th>
+                                                                    <th>DATE</th>
+                                                                    <th className="text-center">VIEW JUDGMENT</th>
                                                                 </tr>
-                                                            ))}
-                                                        </tbody>
-                                                    </table>
-                                                </div>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td className="case-title">Cybercrime Investigation Case</td>
+                                                                    <td>Supreme Court</td>
+                                                                    <td>12-Mar-2026</td>
+                                                                    <td className="text-center"><button className="table-view-btn"><i className="bi bi-file-earmark-text"></i> View</button></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td className="case-title">Digital Privacy Rights Case</td>
+                                                                    <td>Delhi HC</td>
+                                                                    <td>05-Mar-2026</td>
+                                                                    <td className="text-center"><button className="table-view-btn"><i className="bi bi-file-earmark-text"></i> View</button></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td className="case-title">Drug Trafficking Case</td>
+                                                                    <td>Punjab HC</td>
+                                                                    <td>01-Mar-2026</td>
+                                                                    <td className="text-center"><button className="table-view-btn"><i className="bi bi-file-earmark-text"></i> View</button></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
 
-                                            </div>
-                                        )}
-                                        {activeOfferTab === "Community Outreach" && (
-                                            <ul className="offering-list">
-                                                <li><span>Anti Drug Awareness Program at New Delhi HQ</span> <i className="bi bi-chevron-right"></i></li>
-                                                <li><span>Youth Campaign: Say No to Drugs, Say Yes to Life</span> <i className="bi bi-chevron-right"></i></li>
-                                                <li><span>School Seminar on Substance Abuse Prevention</span> <i className="bi bi-chevron-right"></i></li>
-                                                <li><span>NGO Collaboration: Community Support Systems</span> <i className="bi bi-chevron-right"></i></li>
-                                                <li><span>Public Outreach: Narcotics Awareness Drive 2026</span> <i className="bi bi-chevron-right"></i></li>
-                                            </ul>
-                                        )}
+
+                                                </div>
+                                            )}
+                                            {activeOfferTab === "Most Wanted" && (
+                                                <div className="tab-detailed-container wanted-tab-v2">
+
+                                                    <div className="table-responsive-wrapper">
+                                                        <table className="wanted-list-table legal-minimal-table">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>PROFILE</th>
+                                                                    <th>NAME</th>
+                                                                    <th>OFFENCE</th>
+                                                                    <th>LAST KNOWN STATE</th>
+                                                                    <th className="text-center">REWARD</th>
+                                                                    <th className="text-center">ACTION</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                {wantedCriminals.map((criminal) => (
+                                                                    <tr key={criminal.id}>
+                                                                        <td style={{ width: '80px' }}>
+                                                                            <div className="criminal-pfp">
+                                                                                <img src={criminal.photo} alt={criminal.name} />
+                                                                                <span className={`status-tag ${criminal.status.toLowerCase().replace(' ', '-')}`}></span>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td className="criminal-name-cell">
+                                                                            <strong>{criminal.name}</strong>
+                                                                            <span className={`badge-status ${criminal.status.toLowerCase().replace(' ', '-')}`}>{criminal.status}</span>
+                                                                        </td>
+                                                                        <td><span className="crime-label-mini">{criminal.crime}</span></td>
+                                                                        <td className="location-text-v2">
+                                                                            <i className="bi bi-geo-alt-fill"></i> {criminal.location}
+                                                                        </td>
+                                                                        <td className="text-center reward-text-v2">{criminal.reward}</td>
+                                                                        <td className="text-center">
+                                                                            <button className="wanted-icon-btn" aria-label={`View details for ${criminal.name}`}>
+                                                                                <i className="bi bi-eye-fill"></i>
+                                                                            </button>
+                                                                        </td>
+                                                                    </tr>
+                                                                ))}
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+
+                                                </div>
+                                            )}
+                                            {activeOfferTab === "Community Outreach" && (
+                                                <ul className="offering-list">
+                                                    <li><span>Anti Drug Awareness Program at New Delhi HQ</span> <i className="bi bi-chevron-right"></i></li>
+                                                    <li><span>Youth Campaign: Say No to Drugs, Say Yes to Life</span> <i className="bi bi-chevron-right"></i></li>
+                                                    <li><span>School Seminar on Substance Abuse Prevention</span> <i className="bi bi-chevron-right"></i></li>
+                                                    <li><span>NGO Collaboration: Community Support Systems</span> <i className="bi bi-chevron-right"></i></li>
+                                                    <li><span>Public Outreach: Narcotics Awareness Drive 2026</span> <i className="bi bi-chevron-right"></i></li>
+                                                </ul>
+                                            )}
                                         </div>
                                     </div>
                                 </div>
@@ -1238,7 +1234,7 @@ function Home() {
                         <span className="live-pulse-dot"></span>
                         <h2 className="gateway-title">Important <span>Websites</span></h2>
                         <div className="gallery-controls">
-                             <button 
+                            <button
                                 className="gallery-stop-btn"
                                 onClick={() => setIsPortalsPlaying(!isPortalsPlaying)}
                                 aria-label={isPortalsPlaying ? "Pause Portals Slider" : "Play Portals Slider"}
