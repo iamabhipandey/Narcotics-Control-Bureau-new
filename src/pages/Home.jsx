@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from "react";
+import { Link } from "react-router-dom";
 import "../styles/Home.scss";
 import {
     Chart as ChartJS,
@@ -33,6 +34,10 @@ import slider2 from "../assets/slider/slider2.png";
 import slider3 from "../assets/slider/slider3.jpg";
 import slider4 from "../assets/slider/apexncord.jpg";
 import dgProfile from "../assets/profile.jpeg";
+
+import coordination1 from "../assets/updates/coordination_1.png";
+import raid1 from "../assets/updates/raid_1.png";
+import seizure1 from "../assets/updates/seizure_1.png";
 
 // Importing Gallery Images
 import g1 from "../assets/gallary-img/10trainee-bsf.jpeg";
@@ -126,6 +131,36 @@ function Home() {
     const [isPortalsPlaying, setIsPortalsPlaying] = useState(true);
     const [portalsStartX, setPortalsStartX] = useState(0);
     const [portalsScrollLeft, setPortalsScrollLeft] = useState(0);
+
+    // Latest Updates Slider State
+    const [newsIndex, setNewsIndex] = useState(0);
+    const [cardsToShow, setCardsToShow] = useState(3);
+    const newsUpdates = [
+        { id: 1, image: seizure1, date: "14 - 04 - 2026", title: "NCB dismantles major drug syndicate, arrests 15, recovers...", excerpt: "- Operations across multiple states lead to massive recovery of synthetic drugs and proceeds..." },
+        { id: 2, image: raid1, date: "12 - 04 - 2026", title: "NCB raids 3 illicit warehouses in Mumbai, recovers...", excerpt: "- We'll continue to degrade the financial base of trafficking networks and dismantle their..." },
+        { id: 3, image: coordination1, date: "10 - 04 - 2026", title: "NCB, Customs commit to strengthening inter-agency sy...", excerpt: "- Collaborative effort to secure borders and prevent cross-border smuggling of psychotropic..." },
+        { id: 4, image: seizure1, date: "08 - 04 - 2026", title: "International cooperation leads to high-seas seizure...", excerpt: "- Joint operation with Sri Lankan Navy results in interception of 300kg heroin..." },
+        { id: 5, image: raid1, date: "05 - 04 - 2026", title: "NCB busts clandestine laboratory in outskirts of Delhi...", excerpt: "- Specialized chemicals and manufacturing equipment seized along with finished products..." }
+    ];
+
+    useEffect(() => {
+        const updateCardsToShow = () => {
+            if (window.innerWidth <= 600) setCardsToShow(1);
+            else if (window.innerWidth <= 992) setCardsToShow(2);
+            else setCardsToShow(3);
+        };
+        updateCardsToShow();
+        window.addEventListener('resize', updateCardsToShow);
+        return () => window.removeEventListener('resize', updateCardsToShow);
+    }, []);
+
+    const handlePrevNews = () => {
+        setNewsIndex((prev) => (prev === 0 ? Math.max(0, newsUpdates.length - cardsToShow) : prev - 1));
+    };
+
+    const handleNextNews = () => {
+        setNewsIndex((prev) => (prev >= newsUpdates.length - cardsToShow ? 0 : prev + 1));
+    };
 
     // Enforcement Dashboard Data - Perfect Contrast Dark Theme
     const drugArrestData = {
@@ -697,6 +732,155 @@ function Home() {
             </div>
         </section>
 
+            {/* Motto, Mission & Vision Section - PREVIOUS PREMIUM DESIGN (RESTORED) */}
+            <section className="ncb-values-section">
+                <div className="container">
+                    <div className="values-grid">
+                        {/* Left Column: Mission & Vision */}
+                        <div className="values-left-col">
+                            {/* Mission Card */}
+                            <div className="value-card horizontal">
+                                <div className="value-icon-box">
+                                    <i className="bi bi-rocket-takeoff-fill"></i>
+                                </div>
+                                <div className="value-content">
+                                    <h3>Our Mission</h3>
+                                    <p>Prevent and combat abuse and illicit traffic of drugs through strategic enforcement and multi-agency coordination.</p>
+                                </div>
+                            </div>
+
+                            {/* Vision Card */}
+                            <div className="value-card horizontal">
+                                <div className="value-icon-box">
+                                    <i className="bi bi-eye-fill"></i>
+                                </div>
+                                <div className="value-content">
+                                    <h3>Vision</h3>
+                                    <p>To endeavour for a drug free society and protect the nation from the menace of narcotics.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Right Column: Motto/Goal */}
+                        <div className="values-right-col">
+                            <div className="value-card vertical">
+                                <div className="value-icon-box">
+                                    <i className="bi bi-shield-check"></i>
+                                </div>
+                                <div className="value-content">
+                                    <h3>Our Motto</h3>
+                                    <p>Intelligence, Enforcement, Coordination.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Motto, Mission & Vision Section - IMMERSIVE REDESIGN (COMMENTED OUT FOR FUTURE USE)
+            <section className="ncb-values-section-dark">
+                <div className="blob blob-1"></div>
+                <div className="blob blob-2"></div>
+                
+                <div className="container">
+                    <div className="values-grid">
+                        <div className="value-card">
+                            <div className="card-sparkle"></div>
+                            <div className="value-icon-box">
+                                <i className="bi bi-rocket-takeoff-fill"></i>
+                            </div>
+                            <div className="value-content">
+                                <h3>Our Mission</h3>
+                                <p>Prevent and combat abuse and illicit traffic of drugs through strategic enforcement and multi-agency coordination.</p>
+                            </div>
+                        </div>
+
+                        <div className="value-card">
+                            <div className="card-sparkle"></div>
+                            <div className="value-icon-box">
+                                <i className="bi bi-eye-fill"></i>
+                            </div>
+                            <div className="value-content">
+                                <h3>Vision</h3>
+                                <p>To endeavour for a drug free society and protect the nation from the menace of narcotics.</p>
+                            </div>
+                        </div>
+
+                        <div className="value-card">
+                            <div className="card-sparkle"></div>
+                            <div className="value-icon-box">
+                                <i className="bi bi-shield-check"></i>
+                            </div>
+                            <div className="value-content">
+                                <h3>Our Motto</h3>
+                                <p>Intelligence, Enforcement, Coordination.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            */}
+            {/* Latest Updates Section - Institutional News Layout */}
+            <section className="latest-updates-section">
+                <div className="container">
+                    <div className="updates-header">
+                        <div className="header-title">
+                            <h2 className="main-title"><span className="text-navy">Latest</span> Updates</h2>
+                        </div>
+                        <div className="header-controls">
+                            <div className="nav-arrows">
+                                <button 
+                                    className="nav-arrow-btn" 
+                                    aria-label="Previous Update"
+                                    onClick={handlePrevNews}
+                                >
+                                    <i className="bi bi-chevron-left"></i>
+                                </button>
+                                <button 
+                                    className="nav-arrow-btn" 
+                                    aria-label="Next Update"
+                                    onClick={handleNextNews}
+                                >
+                                    <i className="bi bi-chevron-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="updates-carousel-container">
+                        <div 
+                            className="updates-grid" 
+                            style={{ transform: `translateX(-${newsIndex * (100 / cardsToShow)}%)` }}
+                        >
+                            {newsUpdates.map((news) => (
+                                <div className="update-card" key={news.id}>
+                                    <div className="update-inner">
+                                        <div className="update-image-box">
+                                            <img src={news.image} alt="NCB Operation" className="update-img" />
+                                            <div className="update-date-badge">{news.date}</div>
+                                        </div>
+                                        <div className="update-body">
+                                            <h3 className="update-title">{news.title}</h3>
+                                            <p className="update-excerpt">{news.excerpt}</p>
+                                            <div className="card-footer-flex">
+                                                <Link to={`/media/latest-news/${news.id}`} className="continue-reading-pill">
+                                                    Continue reading <i className="bi bi-chevron-double-right"></i>
+                                                </Link>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    <div className="updates-footer">
+                        <Link to="/media/latest-news" className="see-more-footer-link">
+                            <i className="bi bi-arrow-right-circle"></i> See More
+                        </Link>
+                    </div>
+                </div>
+            </section>
 
             {/* Key Offerings & What's New Section - MeitY / CDAC Exact Design */}
             <section className="key-offerings-news-section">

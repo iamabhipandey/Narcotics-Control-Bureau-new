@@ -1,4 +1,6 @@
-import { Routes, Route } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Routes, Route, useLocation } from "react-router-dom";
+import PageLoader from "../components/PageLoader";
 import MainLayout from "../layout/MainLayout";
 import Home from "../pages/Home";
 import About from "../pages/About";
@@ -28,8 +30,22 @@ import Register from "../pages/common/Register";
 import ForgotPassword from "../pages/common/ForgotPassword";
 
 function AppRoutes() {
+    const location = useLocation();
+    const [isLoading, setIsLoading] = useState(false);
+
+    useEffect(() => {
+        setIsLoading(true);
+        const timer = setTimeout(() => {
+            setIsLoading(false);
+        }, 800); // Duration of the loader visible state
+
+        return () => clearTimeout(timer);
+    }, [location]);
+
     return (
-        <Routes>
+        <>
+            {isLoading && <PageLoader />}
+            <Routes>
             <Route
                 path="/"
                 element={
@@ -277,6 +293,7 @@ function AppRoutes() {
                 }
             />
         </Routes>
+    </>
     );
 }
 
