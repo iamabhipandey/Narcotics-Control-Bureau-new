@@ -2,7 +2,7 @@
 
 .footer {
     background-color: #071a36;
-    background-image: 
+    background-image:
         radial-gradient(circle at 0% 100%, rgba(30, 91, 163, 0.1) 0%, transparent 50%),
         radial-gradient(circle at 100% 0%, rgba(0, 59, 111, 0.05) 0%, transparent 50%);
     color: #ffffff;
@@ -139,8 +139,15 @@
                 }
             }
 
-            &.national .h-icon { color: #ef4444; background: rgba(239, 68, 68, 0.1); }
-            &.national:hover .h-icon { background: #ef4444; color: #ffffff; }
+            &.national .h-icon {
+                color: #ef4444;
+                background: rgba(239, 68, 68, 0.1);
+            }
+
+            &.national:hover .h-icon {
+                background: #ef4444;
+                color: #ffffff;
+            }
         }
     }
 }
@@ -201,6 +208,7 @@
 
 .badge-new {
     position: relative;
+
     &::after {
         content: 'NEW';
         font-size: 10px;
@@ -232,16 +240,28 @@
                 margin-top: 2px;
             }
 
-            span, a {
+            span,
+            a {
                 font-size: 14px;
-                color: #94a3b8;
+                color: #ffffff;
                 line-height: 1.5;
                 text-decoration: none;
                 transition: color 0.3s ease;
             }
 
-            a:hover { color: #ffffff; }
+            a:hover {
+                color: #ffffff;
+            }
         }
+    }
+
+    .footer-col-title {
+        font-size: 15px;
+        font-weight: 800;
+        color: #ffffff;
+        margin-bottom: 30px;
+        position: relative;
+        padding-bottom: 12px;
     }
 
     .footer-social-links {
@@ -265,10 +285,22 @@
             &:hover {
                 transform: translateY(-5px);
                 color: #ffffff;
-                &.instagram { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%); }
-                &.facebook { background: #1877f2; }
-                &.youtube { background: #ff0000; }
-                &.x-twitter { background: #000000; }
+
+                &.instagram {
+                    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+                }
+
+                &.facebook {
+                    background: #1877f2;
+                }
+
+                &.youtube {
+                    background: #ff0000;
+                }
+
+                &.x-twitter {
+                    background: #000000;
+                }
             }
         }
     }
@@ -298,7 +330,9 @@
             font-weight: 500;
             transition: color 0.3s ease;
 
-            &:hover { color: #ffffff; }
+            &:hover {
+                color: #ffffff;
+            }
         }
     }
 }
@@ -327,7 +361,10 @@
             font-size: 13px;
             color: #64748b;
             line-height: 1.6;
-            strong { color: #94a3b8; }
+
+            strong {
+                color: #94a3b8;
+            }
         }
     }
 

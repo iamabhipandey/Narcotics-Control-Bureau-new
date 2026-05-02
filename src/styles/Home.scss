@@ -344,11 +344,24 @@
 @media (max-width: 768px) {
     .ticker-flex {
         gap: 10px;
+        padding: 0px;
     }
 
     .ticker-label {
         font-size: 13px;
         padding-right: 10px;
+    }
+
+    .ticker-label::after {
+        content: "";
+        position: absolute;
+        right: 0px;
+        top: 0;
+        width: 11px;
+        height: 100%;
+        background: inherit;
+        transform: skewX(-25deg);
+        z-index: -1;
     }
 }
 
@@ -645,13 +658,13 @@
         margin-bottom: 50px;
 
         @media (max-width: 768px) {
-            flex-direction: column;
+            // flex-direction: column;
             align-items: flex-start;
             gap: 20px;
         }
 
         .main-title {
-            font-size: 40px;
+            font-size: 25px !important;
             font-weight: 900;
             color: #1e293b;
             margin: 0;
@@ -1124,8 +1137,24 @@
     align-items: stretch;
 
     @media (max-width: 992px) {
+        gap: 30px;
+        padding: 20px;
+
+        .dg-profile-card {
+            background: #003f72;
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: auto;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border-bottom: 4px solid #f59e0b;
+        }
+    }
+
+    @media (max-width: 768px) {
         flex-direction: column;
-        padding: 30px;
+        padding: 7px;
         gap: 30px;
     }
 }
@@ -1136,6 +1165,10 @@
     /* Increased from 260px to make the photo larger */
     display: flex;
     flex-direction: column;
+
+    @media (max-width: 992px) {
+        align-self: center;
+    }
 }
 
 .dg-profile-card {
@@ -1255,8 +1288,12 @@
         /* Highlight Nation's */
     }
 
+    @media (max-width: 992px) {
+        font-size: 24px;
+    }
+
     @media (max-width: 768px) {
-        font-size: 28px;
+        font-size: 24px;
     }
 }
 
@@ -1270,7 +1307,16 @@
     /* Increased */
     position: relative;
     margin-bottom: 35px;
+
     /* Increased */
+    @media (max-width: 992px) {
+        padding: 25px 17px;
+        font-size: 14px;
+    }
+
+    @media (max-width: 768px) {
+        padding: 25px 7px;
+    }
 }
 
 .dg-quote-icon-badge {
@@ -1577,7 +1623,7 @@
                 }
 
                 p {
-                    color: #94a3b8;
+                    color: #ffffff;
                 }
             }
 
@@ -4291,7 +4337,7 @@
 .social-media-section {
     padding: 80px 0;
     background-color: #071a36; // Premium Dark Navy
-    background-image: 
+    background-image:
         radial-gradient(circle at 0% 0%, rgba(30, 91, 163, 0.15) 0%, transparent 40%),
         radial-gradient(circle at 100% 100%, rgba(0, 59, 111, 0.1) 0%, transparent 40%);
     color: #ffffff;
@@ -4360,19 +4406,30 @@
                 backdrop-filter: blur(10px);
                 box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 
-                i { font-size: 20px; color: #ffffff; transition: transform 0.3s ease; }
+                i {
+                    font-size: 20px;
+                    color: #ffffff;
+                    transition: transform 0.3s ease;
+                }
 
                 &:hover {
                     background: #1e5ba3;
                     border-color: #1e5ba3;
                     transform: translateY(-3px);
                     box-shadow: 0 10px 25px rgba(30, 91, 163, 0.4);
-                    
-                    &.prev i { transform: translateX(-3px); }
-                    &.next i { transform: translateX(3px); }
+
+                    &.prev i {
+                        transform: translateX(-3px);
+                    }
+
+                    &.next i {
+                        transform: translateX(3px);
+                    }
                 }
 
-                &:active { transform: scale(0.95); }
+                &:active {
+                    transform: scale(0.95);
+                }
             }
         }
     }
@@ -4393,7 +4450,9 @@
         scroll-snap-type: x mandatory;
         scroll-behavior: smooth;
 
-        &::-webkit-scrollbar { display: none; }
+        &::-webkit-scrollbar {
+            display: none;
+        }
     }
 
     .social-card {
@@ -4419,10 +4478,21 @@
             box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5);
 
             .social-card-header {
-                &.x-card-header { background: #000; }
-                &.youtube-card-header { background: #ff0000; }
-                &.facebook-card-header { background: #1877f2; }
-                &.instagram-card-header { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
+                &.x-card-header {
+                    background: #000;
+                }
+
+                &.youtube-card-header {
+                    background: #ff0000;
+                }
+
+                &.facebook-card-header {
+                    background: #1877f2;
+                }
+
+                &.instagram-card-header {
+                    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+                }
             }
         }
 
@@ -4444,7 +4514,10 @@
                 text-transform: uppercase;
             }
 
-            i { font-size: 20px; color: rgba(255, 255, 255, 0.5); }
+            i {
+                font-size: 20px;
+                color: rgba(255, 255, 255, 0.5);
+            }
         }
 
         .social-card-body {
@@ -4534,30 +4607,97 @@
                     border-radius: 50%;
                     padding: 2px;
                     background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
-                    
-                    img { width: 100%; height: 100%; border-radius: 50%; border: 2px solid #fff; }
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        border-radius: 50%;
+                        border: 2px solid #fff;
+                    }
                 }
 
                 .insta-user-info {
                     flex: 1;
-                    .insta-username { font-weight: 700; color: #262626; font-size: 13px; display: flex; align-items: center; gap: 4px; i { color: #0095f6; font-size: 12px; } }
-                    .insta-followers { font-size: 11px; color: #8e8e8e; }
+
+                    .insta-username {
+                        font-weight: 700;
+                        color: #262626;
+                        font-size: 13px;
+                        display: flex;
+                        align-items: center;
+                        gap: 4px;
+
+                        i {
+                            color: #0095f6;
+                            font-size: 12px;
+                        }
+                    }
+
+                    .insta-followers {
+                        font-size: 11px;
+                        color: #8e8e8e;
+                    }
                 }
 
-                .insta-view-profile-link { font-size: 12px; font-weight: 700; color: #0095f6; text-decoration: none; }
+                .insta-view-profile-link {
+                    font-size: 12px;
+                    font-weight: 700;
+                    color: #0095f6;
+                    text-decoration: none;
+                }
             }
 
             .insta-post-preview {
                 position: relative;
                 aspect-ratio: 1;
-                img { width: 100%; height: 100%; object-fit: cover; }
-                .insta-type-icon { position: absolute; top: 15px; right: 15px; color: #fff; font-size: 20px; text-shadow: 0 0 10px rgba(0,0,0,0.3); }
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+
+                .insta-type-icon {
+                    position: absolute;
+                    top: 15px;
+                    right: 15px;
+                    color: #fff;
+                    font-size: 20px;
+                    text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+                }
             }
 
             .insta-card-footer {
                 padding: 15px;
-                p { font-size: 13px; color: #262626; margin-bottom: 10px; line-height: 1.4; .more-link { color: #8e8e8e; cursor: pointer; } }
-                .insta-action-btn { display: block; background: #0095f6; color: #fff; text-align: center; padding: 10px; border-radius: 8px; font-weight: 700; font-size: 13px; text-decoration: none; transition: background 0.3s ease; &:hover { background: #1877f2; } }
+
+                p {
+                    font-size: 13px;
+                    color: #262626;
+                    margin-bottom: 10px;
+                    line-height: 1.4;
+
+                    .more-link {
+                        color: #8e8e8e;
+                        cursor: pointer;
+                    }
+                }
+
+                .insta-action-btn {
+                    display: block;
+                    background: #0095f6;
+                    color: #fff;
+                    text-align: center;
+                    padding: 10px;
+                    border-radius: 8px;
+                    font-weight: 700;
+                    font-size: 13px;
+                    text-decoration: none;
+                    transition: background 0.3s ease;
+
+                    &:hover {
+                        background: #1877f2;
+                    }
+                }
             }
         }
     }
