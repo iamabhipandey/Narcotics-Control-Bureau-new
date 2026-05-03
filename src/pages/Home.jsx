@@ -156,7 +156,7 @@ function Home() {
     const [isPlaying, setIsPlaying] = useState(true);
     const [isTickerPaused, setIsTickerPaused] = useState(false);
 
-    const [activeOfferTab, setActiveOfferTab] = useState("Legal Judgments");
+    const [activeOfferTab, setActiveOfferTab] = useState("Most Wanted");
     const [isNewsPlaying, setIsNewsPlaying] = useState(true);
     const [isPressPlaying, setIsPressPlaying] = useState(true);
     const [isActivityPlaying, setIsActivityPlaying] = useState(true);
@@ -496,7 +496,7 @@ function Home() {
         {
             id: 1,
             photo: c1,
-            name: "Rahul 'Python' Sharma",
+            name: "Khalid",
             crime: "Drug Trafficking",
             location: "Mumbai, Maharashtra",
             reward: "₹ 10,00,000",
@@ -514,7 +514,7 @@ function Home() {
         {
             id: 3,
             photo: c3,
-            name: "Vikram 'Ghost' Singh",
+            name: "Omar",
             crime: "Border Smuggling",
             location: "Amritsar, Punjab",
             reward: "₹ 7,50,000",
@@ -1024,10 +1024,10 @@ function Home() {
             */}
             {/* Key Offerings & What's New Section - MeitY / CDAC Exact Design */}
             <section className="key-offerings-news-section dark-mode">
-                <div className="container" data-aos="fade-up" data-aos-duration="2000">
+                <div className="container-fluid" data-aos="fade-up" data-aos-duration="2000">
                     <div className="row offerings-news-grid">
                         {/* Left Side: Key Offerings with Tabs */}
-                        <div className="col-lg-8 mb-4 mb-lg-0">
+                        <div className="col-lg-8 mb-4">
                             <div className="key-offerings-column">
                                 <div className="offering-header-flex">
                                     <i className="bi bi-clipboard2-check offering-main-icon"></i>
@@ -1037,9 +1037,9 @@ function Home() {
                                 <div className="offerings-tab-container">
                                     <div className="offerings-tabs-wrapper">
                                         <div className="offerings-tabs-row">
-                                            <button className={`offer-tab ${activeOfferTab === "Legal Judgments" ? "active" : ""}`} onClick={() => setActiveOfferTab("Legal Judgments")}>
+                                            {/* <button className={`offer-tab ${activeOfferTab === "Legal Judgments" ? "active" : ""}`} onClick={() => setActiveOfferTab("Legal Judgments")}>
                                                 <i className="bi bi-gavel"></i> Legal Judgments
-                                            </button>
+                                            </button> */}
                                             <button className={`offer-tab ${activeOfferTab === "Most Wanted" ? "active" : ""}`} onClick={() => setActiveOfferTab("Most Wanted")}>
                                                 <i className="bi bi-person-badge"></i> Most Wanted
                                             </button>
@@ -1052,7 +1052,7 @@ function Home() {
 
                                     <div className="offerings-tab-content-wrapper" key={activeOfferTab}>
                                         <div className="offerings-tab-content">
-                                            {activeOfferTab === "Legal Judgments" && (
+                                            {/* {activeOfferTab === "Legal Judgments" && (
                                                 <div className="legal-table-tab-container">
 
 
@@ -1091,7 +1091,7 @@ function Home() {
 
 
                                                 </div>
-                                            )}
+                                            )} */}
                                             {activeOfferTab === "Most Wanted" && (
                                                 <div className="tab-detailed-container wanted-tab-v2">
 
@@ -1120,7 +1120,7 @@ function Home() {
                                                                             <strong>{criminal.name}</strong>
                                                                             <span className={`badge-status ${criminal.status.toLowerCase().replace(' ', '-')}`}>{criminal.status}</span>
                                                                         </td>
-                                                                        <td><span className="crime-label-mini">{criminal.crime}</span></td>
+                                                                        <td><span className="crime-label-mini text-white">{criminal.crime}</span></td>
                                                                         <td className="location-text-v2">
                                                                             <i className="bi bi-geo-alt-fill"></i> {criminal.location}
                                                                         </td>
@@ -1302,18 +1302,20 @@ function Home() {
                         <div className="social-grid" ref={socialScrollRef}>
                             {/* Column 1: X (Twitter) */}
                             <div className="social-card x-card">
-                                <div className="social-card-header">
-                                    <h3>X</h3>
+                                <div className="social-card-header x-card-header">
+                                    <h3>X Timeline</h3>
+                                    <i className="bi bi-twitter-x"></i>
                                 </div>
                                 <div className="social-card-body">
                                     <iframe
                                         className="social-iframe"
                                         src="https://syndication.twitter.com/srv/timeline-profile/screen-name/narcoticsbureau"
                                         title="X/Twitter Feed"
+                                        loading="lazy"
                                     ></iframe>
                                     <div className="embed-placeholder">
                                         <i className="bi bi-twitter-x"></i>
-                                        <p>Follow @narcoticsbureau</p>
+                                        <p>Follow @narcoticsbureau on X</p>
                                         <a href="https://x.com/narcoticsbureau" target="_blank" rel="noopener noreferrer" className="visit-social-btn">VIEW ON X</a>
                                     </div>
                                 </div>
@@ -1321,20 +1323,21 @@ function Home() {
 
                             {/* Column 2: Youtube */}
                             <div className="social-card youtube-card">
-                                <div className="social-card-header">
-                                    <h3>Youtube</h3>
+                                <div className="social-card-header youtube-card-header">
+                                    <h3>YouTube Official</h3>
+                                    <i className="bi bi-youtube"></i>
                                 </div>
                                 <div className="social-card-body">
                                     <iframe
                                         className="social-iframe"
-                                        src="https://www.youtube.com/embed/7V-Xv_Y0E6o?si=_2z_L4e_o8e_o8e_"
-                                        title="YouTube video player"
+                                        src="https://www.youtube.com/embed/videoseries?list=UUb3-9pF4m0BbLpW-yfR1Ipg"
+                                        title="YouTube Channel Feed"
                                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                         allowFullScreen
                                     ></iframe>
                                     <div className="embed-placeholder">
                                         <i className="bi bi-youtube"></i>
-                                        <p>NCB Official Channel</p>
+                                        <p>NCB Official YouTube Channel</p>
                                         <a href="https://www.youtube.com/channel/UCb3-9pF4m0BbLpW-yfR1Ipg" target="_blank" rel="noopener noreferrer" className="visit-social-btn">WATCH VIDEOS</a>
                                     </div>
                                 </div>
@@ -1342,18 +1345,20 @@ function Home() {
 
                             {/* Column 3: Facebook */}
                             <div className="social-card facebook-card">
-                                <div className="social-card-header">
-                                    <h3>Facebook</h3>
+                                <div className="social-card-header facebook-card-header">
+                                    <h3>Facebook Page</h3>
+                                    <i className="bi bi-facebook"></i>
                                 </div>
                                 <div className="social-card-body">
                                     <iframe
                                         className="social-iframe"
                                         src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fnarcoticscontrolbureauindia&tabs=timeline&width=340&height=500&small_header=true&adapt_container_width=true&hide_cover=true&show_facepile=false&appId"
                                         title="Facebook Feed"
+                                        loading="lazy"
                                     ></iframe>
                                     <div className="embed-placeholder">
                                         <i className="bi bi-facebook"></i>
-                                        <p>Connect on Facebook</p>
+                                        <p>Connect with NCB on Facebook</p>
                                         <a href="https://www.facebook.com/narcoticscontrolbureauindia" target="_blank" rel="noopener noreferrer" className="visit-social-btn">VISIT PAGE</a>
                                     </div>
                                 </div>
@@ -1361,8 +1366,9 @@ function Home() {
 
                             {/* Column 4: Instagram */}
                             <div className="social-card instagram-card">
-                                <div className="social-card-header">
-                                    <h3>Instagram</h3>
+                                <div className="social-card-header instagram-card-header">
+                                    <h3>Instagram Feed</h3>
+                                    <i className="bi bi-instagram"></i>
                                 </div>
                                 <div className="social-card-body instagram-mock-body">
                                     <div className="insta-profile-header">
@@ -1371,22 +1377,28 @@ function Home() {
                                         </div>
                                         <div className="insta-user-info">
                                             <div className="insta-username">india.ncb <i className="bi bi-patch-check-fill"></i></div>
-                                            <div className="insta-followers">Social Awareness</div>
+                                            <div className="insta-followers">Official Account</div>
                                         </div>
-                                        <a href="https://www.instagram.com/india.ncb" target="_blank" rel="noopener noreferrer" className="insta-view-profile-link">View profile</a>
+                                        <a href="https://www.instagram.com/india.ncb?igsh=MWo2dmtlOWFlaDgxeA%3D%3D" target="_blank" rel="noopener noreferrer" className="insta-view-profile-link">Follow</a>
                                     </div>
                                     <div className="insta-post-preview">
                                         <img src="https://images.unsplash.com/photo-1541873676947-9dc60f748d90?q=80&w=1000&auto=format&fit=crop" alt="NCB Activity" />
-                                        <div className="insta-type-icon"><i className="bi bi-display"></i></div>
+                                        <div className="insta-type-icon"><i className="bi bi-play-circle"></i></div>
                                     </div>
                                     <div className="insta-card-footer">
-                                        <p><strong>india.ncb</strong> Mission Spandan: Spreading awareness against drug abuse across schools... <span className="more-link">more</span></p>
-                                        <a href="https://www.instagram.com/india.ncb" target="_blank" rel="noopener noreferrer" className="insta-action-btn">VIEW ON INSTAGRAM</a>
+                                        <div className="insta-actions">
+                                            <i className="bi bi-heart"></i>
+                                            <i className="bi bi-chat"></i>
+                                            <i className="bi bi-send"></i>
+                                            <i className="bi bi-bookmark ms-auto"></i>
+                                        </div>
+                                        <p><strong>india.ncb</strong> Spreading awareness against drug abuse. Join the mission for a drug-free India. <span className="more-link">#DrugFreeIndia</span></p>
+                                        <a href="https://www.instagram.com/india.ncb?igsh=MWo2dmtlOWFlaDgxeA%3D%3D" target="_blank" rel="noopener noreferrer" className="insta-action-btn">VIEW ON INSTAGRAM</a>
                                     </div>
                                     <div className="embed-placeholder">
                                         <i className="bi bi-instagram"></i>
                                         <p>Official Instagram Feed</p>
-                                        <a href="https://www.instagram.com/india.ncb" target="_blank" rel="noopener noreferrer" className="visit-social-btn">VIEW PROFILE</a>
+                                        <a href="https://www.instagram.com/india.ncb?igsh=MWo2dmtlOWFlaDgxeA%3D%3D" target="_blank" rel="noopener noreferrer" className="visit-social-btn">VIEW PROFILE</a>
                                     </div>
                                 </div>
                             </div>
