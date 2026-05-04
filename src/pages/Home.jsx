@@ -31,10 +31,9 @@ ChartJS.register(
 );
 
 // Importing slider images
-import slider1 from "../assets/slider/slider1.jpg";
-import slider2 from "../assets/slider/slider2.png";
-import slider3 from "../assets/slider/slider3.jpg";
-import slider4 from "../assets/slider/apexncord.jpg";
+import slider1 from "../assets/slider/Banner-1(NCB).png";
+import slider2 from "../assets/slider/Banner-2(NCB).png";
+import slider3 from "../assets/slider/Banner-3 (NCB).png";
 import dgProfile from "../assets/profile.jpeg";
 
 import coordination1 from "../assets/updates/coordination_1.png";
@@ -91,12 +90,6 @@ const slides = [
         image: slider3,
         title: "Awareness & Community Engagement",
         description: "Empowering the youth and communities to resist drug abuse through nationwide educational programs."
-    },
-    {
-        id: 4,
-        image: slider4,
-        title: "Strategic Cooperation & NCORD",
-        description: "Strengthening the institutional mechanism for multi-agency coordination in drug law enforcement."
     }
 ];
 
