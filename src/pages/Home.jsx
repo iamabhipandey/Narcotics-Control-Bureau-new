@@ -1103,7 +1103,7 @@ function Home() {
                                                                     <th>NAME</th>
                                                                     <th>OFFENCE</th>
                                                                     <th>LAST KNOWN STATE</th>
-                                                                    <th className="text-center">REWARD</th>
+                                                                    {/* <th className="text-center">REWARD</th> */}
                                                                     <th className="text-center">ACTION</th>
                                                                 </tr>
                                                             </thead>
@@ -1124,7 +1124,7 @@ function Home() {
                                                                         <td className="location-text-v2">
                                                                             <i className="bi bi-geo-alt-fill"></i> {criminal.location}
                                                                         </td>
-                                                                        <td className="text-center reward-text-v2">{criminal.reward}</td>
+                                                                        {/* <td className="text-center reward-text-v2">{criminal.reward}</td> */}
                                                                         <td className="text-center">
                                                                             <button className="wanted-icon-btn" aria-label={`View details for ${criminal.name}`}>
                                                                                 <i className="bi bi-eye-fill"></i>
@@ -1373,7 +1373,7 @@ function Home() {
                                 <div className="social-card-body instagram-mock-body">
                                     <div className="insta-profile-header">
                                         <div className="insta-avatar">
-                                            <img src="/logo.svg" alt="NCB" />
+                                            <img src="/national-emblem.png" alt="NCB" />
                                         </div>
                                         <div className="insta-user-info">
                                             <div className="insta-username">india.ncb <i className="bi bi-patch-check-fill"></i></div>

@@ -93,10 +93,10 @@ body.sidebar-open {
 
 /* ================= Header Layer 2: Main Branding (DEA Style) ================= */
 .header-main-branding {
-    background-color: #002244;
-    /* Darker Navy per screenshot */
-    padding: 16px 0;
-    border-bottom: none;
+    background-color: #ffffff;
+    /* Clean White Background */
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .branding-container {
@@ -104,6 +104,7 @@ body.sidebar-open {
     justify-content: space-between;
     align-items: center;
     gap: 20px;
+    position: relative;
 }
 
 .branding-left {
@@ -112,8 +113,30 @@ body.sidebar-open {
     gap: 18px;
 }
 
+.branding-right-group {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.branding-emblem-right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+// branding-center removed as per new layout
+
 .gov-emblem {
+    height: 80px;
     width: auto;
+    filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.1));
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+    &:hover {
+        transform: scale(1.08) translateY(-2px);
+        filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.15));
+    }
 }
 
 .brand-text-col {
@@ -127,8 +150,8 @@ body.sidebar-open {
     font-family: "Outfit", sans-serif;
     font-size: 11px;
     font-weight: 700;
-    color: #fdb81e;
-    /* Gold color for Govt text per screenshot */
+    color: #d32f2f;
+    /* Red for Govt text on white bg */
     text-transform: uppercase;
     letter-spacing: 0.15em;
     line-height: 1;
@@ -136,22 +159,22 @@ body.sidebar-open {
 
 .brand-org-name {
     font-size: 2.2rem;
-    font-weight: 700;
+    font-weight: 800;
     margin: 4px 0 0 0;
-    letter-spacing: 0.2px;
-    color: #ffffff;
-    /* Solid White */
+    letter-spacing: -0.5px;
+    color: #002e60;
+    /* Deep Navy */
     font-family: 'Georgia', 'Merriweather', serif;
-    /* Serif font per screenshot */
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    text-shadow: none;
 }
 
 .brand-org-hindi {
     font-family: "Outfit", sans-serif;
     display: block;
     font-size: 14px;
-    font-weight: 500;
-    color: rgba(255, 255, 255, 0.7);
+    font-weight: 600;
+    color: #555555;
+    /* Medium Grey */
     line-height: 1;
     margin-top: 6px;
     letter-spacing: 0.04em;
@@ -169,13 +192,13 @@ body.sidebar-open {
     display: flex;
     align-items: center;
     gap: 15px;
-    margin: auto;
 }
 
 .utility-text-link {
     background: transparent;
     border: none;
-    color: #ffffff;
+    color: #334155;
+    /* Slate Dark */
     font-size: 13px;
     font-weight: 700;
     text-decoration: none;
@@ -188,13 +211,13 @@ body.sidebar-open {
 }
 
 .utility-text-link:hover {
-    color: #fdb81e;
+    color: #d32f2f;
 }
 
 .v-divider-small {
     width: 1px;
     height: 14px;
-    background-color: rgba(255, 255, 255, 0.3);
+    background-color: rgba(0, 0, 0, 0.15);
 }
 
 .search-wrapper-modern {
@@ -204,13 +227,13 @@ body.sidebar-open {
 .search-pill {
     display: flex;
     align-items: center;
-    background: #113355;
-    /* Lighter navy than background */
+    background: #f1f5f9;
+    /* Very Light Slate */
     border-radius: 20px;
     /* pill shape */
     padding: 0;
     overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.08);
     height: 38px;
     width: 100%;
 }
@@ -221,11 +244,11 @@ body.sidebar-open {
     border: none;
     outline: none;
     font-size: 13px;
-    color: #ffffff;
+    color: #334155;
     padding: 0 16px;
 
     &::placeholder {
-        color: rgba(255, 255, 255, 0.5);
+        color: rgba(0, 0, 0, 0.4);
     }
 }
 
@@ -1015,18 +1038,36 @@ body.sidebar-open {
         display: none;
     }
 
+    .branding-container {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+
+    .branding-right-group {
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+        align-items: center;
+    }
+
+    .branding-right {
+        width: 100% !important;
+        align-items: center;
+    }
+
     .header-main-branding {
-        padding: 15px 0;
-        padding-bottom: 0px;
+        padding: 20px 0;
     }
 
     .branding-left {
         gap: 10px;
         justify-content: center;
+        width: 100%;
     }
 
     .brand-text-col {
-        text-align: left;
+        text-align: center;
     }
 
     .v-divider {
